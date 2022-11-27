@@ -1,7 +1,6 @@
 from flask import Flask, request, render_template
 from mongodb import mongodb
 
-
 app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])  # GET REQUEST
