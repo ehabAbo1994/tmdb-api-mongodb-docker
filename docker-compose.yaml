@@ -5,8 +5,10 @@ services:
         depends_on:
             - db_host
         ports:
-            - "5001:5001"
+            - "5000:5000"
+
     db_host:
         image: mongo:latest
+        container_name: "mongodb"
         ports:
             - "27017:27017"

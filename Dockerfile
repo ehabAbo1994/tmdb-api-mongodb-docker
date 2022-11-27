@@ -23,7 +23,7 @@ RUN mkdir -p /app/templates
 RUN mkdir -p /app/temp_content
 COPY ./templates/*  /app/templates
 
-EXPOSE 5001
+EXPOSE 5000
 # Step 4 set default commands
 ENTRYPOINT [ "python3" ]
 

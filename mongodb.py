@@ -45,10 +45,13 @@ class mongodb:
 
     # read data from fs.file colum
     def read_data(self):
+        posters = []
         col = self.db["fs.files"]
         x = col.find({})
         for document in x:
             print("poster: " + str(document['filename']))
-
+            posters.append(document['filename'])
+        print(posters)
+        return posters
 if __name__ == "__main__":
     mongo = mongodb('localhost', 27017)

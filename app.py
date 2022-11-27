@@ -9,7 +9,8 @@ def load_insert_item_html():
     if request.method == 'POST':
         movie_name = request.form['name']
         #print(movie_name)
-        mongo = mongodb('mongodb', 27017)
+        mongo = mongodb('localhost', 27017)
+        #mongo = mongodb('mongo', 27017)
         if request.form['submit_button'] == 'submit':
             mongo.insert_data(movie_name)
             return "poster submited"
@@ -23,6 +24,6 @@ def load_insert_item_html():
 
 
 if __name__ == "__main__":
-    port = int(os.environ.get('PORT', 5000))
-    app.run(debug=False, host='0.0.0.0', port=port)
+
+    app.run(debug=False, host='0.0.0.0', port=5001)
 

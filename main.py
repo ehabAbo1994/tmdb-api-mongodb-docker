@@ -8,9 +8,9 @@ def main():
     # tmdb.getURL()
     # tmdb.getposterURL(movie_name)
     # tmdb.download_image(movie_name)
-    mdb = mongodb()
+    mdb = mongodb('localhost', 27017)
     # mdb.insert_data(movie_name)
-    #mdb.read_data()
+    mdb.read_data()
     # mdb.del_data(movie_name)
 
 if __name__ == '__main__':
