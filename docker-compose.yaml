@@ -6,7 +6,6 @@ services:
             - db_host
         ports:
             - "5001:5001"
-
     db_host:
         image: mongo:latest
         ports:

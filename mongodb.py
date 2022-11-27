@@ -6,8 +6,8 @@ from tmdb import TMDBDownloader
 
 class mongodb:
 
-    def __init__(self):
-        self.myclient = pymongo.MongoClient()
+    def __init__(self, ip, port):
+        self.myclient = pymongo.MongoClient(ip, port)
         self.db = self.myclient["movies"]
         self.col = self.db["posters"]
         self.tmdb_downloader = TMDBDownloader()
@@ -50,3 +50,5 @@ class mongodb:
         for document in x:
             print("poster: " + str(document['filename']))
 
+if __name__ == "__main__":
+    mongo = mongodb('localhost', 27017)

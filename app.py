@@ -1,3 +1,4 @@
+import os
 from flask import Flask, request, render_template
 from mongodb import mongodb
 
@@ -8,14 +9,20 @@ def load_insert_item_html():
     if request.method == 'POST':
         movie_name = request.form['name']
         #print(movie_name)
-        mongo = mongodb()
+        mongo = mongodb('mongodb', 27017)
         if request.form['submit_button'] == 'submit':
             mongo.insert_data(movie_name)
+            return "poster submited"
         elif request.form['submit_button'] == 'delete':
             mongo.del_data(movie_name)
+            return "movie deleted"
         elif request.form['submit_button'] == 'read data':
-            mongo.read_data()
+            read = mongo.read_data()
+            return read
     return render_template('form.html')
 
-app.run()
+
+if __name__ == "__main__":
+    port = int(os.environ.get('PORT', 5000))
+    app.run(debug=False, host='0.0.0.0', port=port)
 

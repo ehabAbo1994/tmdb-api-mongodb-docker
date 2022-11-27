@@ -1,5 +1,5 @@
 # Step 1 select default OS image
-FROM alpine
+FROM python:3.8-alpine
 
 # Step 2 Setting up environment
 RUN apk update
@@ -11,21 +11,19 @@ RUN pip3 install --upgrade pip
 WORKDIR /app
 
 # Installing dependencies.
-RUN pip3 install -r requirements.txt
+COPY requirements.txt /app/requirements.txt
+RUN pip3 install -r /app/requirements.txt
 
 # Copying project files.
-COPY app.py /app
-COPY tmdb.py /app
-COPY mongodb.py /app
+COPY . /app
+
 
 
 RUN mkdir -p /app/templates
 RUN mkdir -p /app/temp_content
-COPY ./Templates/*  /app/templates
+COPY ./templates/*  /app/templates
 
-# Exposing an internal port
 EXPOSE 5001
-
 # Step 4 set default commands
 ENTRYPOINT [ "python3" ]
 
