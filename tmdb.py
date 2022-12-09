@@ -9,7 +9,6 @@ class TMDBDownloader:
 
     def __init__(self):
         self.api_key = os.getenv('API_KEY')
-        self.api_token = os.getenv('ACCESS_TOKEN')
         self.api_url = os.getenv('URL')
         self.CONFIG_PATTERN = 'http://api.themoviedb.org/3/configuration?api_key={key}'
         IMG_PATTERN = 'http://api.themoviedb.org/3/movie/{imdbid}/images?api_key={key}'
