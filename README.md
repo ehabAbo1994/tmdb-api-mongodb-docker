@@ -1,7 +1,11 @@
 # tmdb-api
 
-# description:
+# description: a simple web app to download and save poster from tmdb in mongodb.
 
+- requirements:
+    - docker installed.
+    - API key for imdb.
+    - Code editor of your choice.
 - steps to run:
     - Clone this repostory to your computer. 
       - after cloning you need to have a TMDB API you can follow the stepts below:
@@ -17,7 +21,3 @@
     - This project ask the user to search for a movie poster and give him the poster for this movie.
     - All this project will be in container and I will use docker-compose to use also the image of mongoDB.
     - Build a simple web app that use a API for TMDB to download the posters.
-- requirements:
-    - docker installed.
-    - API key for imdb.
-    - Code editor of your choice.
