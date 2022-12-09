@@ -12,21 +12,8 @@ class TMDBDownloader:
         self.api_token = os.getenv('ACCESS_TOKEN')
         self.api_url = os.getenv('URL')
         self.CONFIG_PATTERN = 'http://api.themoviedb.org/3/configuration?api_key={key}'
-
-    '''
-    this function is to get the api response.
-    as part of understanding how api works.
-    '''
-
-    def getURL(self):
         IMG_PATTERN = 'http://api.themoviedb.org/3/movie/{imdbid}/images?api_key={key}'
-        api_response = requests.get(IMG_PATTERN.format(key=self.api_key, imdbid='tt0095016')).json()
-        # print(api_response)
-        return api_response
 
-    '''
-    this function is used to get the poster url.
-    '''
 
     def getposterURL(self, name):
         jpg_path = ''
@@ -41,7 +28,7 @@ class TMDBDownloader:
         # get_id = the movie id by tmdb
         get_id = jpg_path.get('results')[0].get('id')
         url = (image_base_url + backdrop_path)
-        # print(url)
+        print(url)
         return url, get_id
 
     '''

@@ -17,10 +17,7 @@ RUN pip3 install -r /app/requirements.txt
 # Copying project files.
 COPY . /app
 
-
-
 RUN mkdir -p /app/templates
-RUN mkdir -p /app/temp_content
 COPY ./templates/*  /app/templates
 
 EXPOSE 5000
