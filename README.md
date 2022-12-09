@@ -9,7 +9,7 @@
         - Go to settings and click on API.
         - Generate new API.
       - after you have the api save it in a .env file.
-      - ![](../../Desktop/aaaa.png)
+      - ![](images/aaaa.png)
     - In the terminal run the command docker build . -t app:latest
     - Run the command docker-compose -f docker_compose.yaml up
     - open http://localhost:5001/ on your browser.
