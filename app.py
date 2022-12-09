@@ -1,23 +1,23 @@
-import pymongo
+from base64 import b64encode
 from flask import Flask, request, render_template
-from pymongo.server_api import ServerApi
-
 from mongodb import mongodb
 
 app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])  # GET REQUEST
 def load_insert_item_html():
+    mongo = mongodb('mongodb', 27017)
     if request.method == 'POST':
         movie_name = request.form['name']
         #print(movie_name)
-        mongo = mongodb('mongodb', 27017)
+        binary_file = mongo.read_data(movie_name)
         if request.form['submit_button'] == 'submit':
-            #mongo.insert_data(movie_name)
             if mongo.insert_data(movie_name):
-                return "poster already exist "
+                image = b64encode(binary_file).decode("utf-8")
+                src = "data:image/gif;base64," + image
+                return f'<img src={src}>'
             else:
-                return "poster added"
+                return "poster added, please return and type the name again to show the poster"
 
         elif request.form['submit_button'] == 'delete':
             mongo.del_data(movie_name)

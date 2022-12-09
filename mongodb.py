@@ -2,13 +2,12 @@ import pymongo
 import gridfs
 import requests
 from pymongo import MongoClient
-from pymongo.server_api import ServerApi
 
 from tmdb import TMDBDownloader
 
 
 class mongodb:
-
+    content_path = "content/"
     def __init__(self,ip,port):
         self.myclient = pymongo.MongoClient("mongodb",27017)
         self.db = self.myclient["posters"]
@@ -32,6 +31,7 @@ class mongodb:
         # print("this is the movie url= " + str(movie_url))
         response = requests.get(movie_url, stream=True)
         state = False
+        path = "upload/"
         # check if the poster exist by id
         if self.fs.exists({'my_id': movie_id}):
             print("already exist")
@@ -41,7 +41,7 @@ class mongodb:
             print("adding poster: " + str(self.name))
             print(response.raw)
             # if it doesn't exist then use put to insert into colum
-            self.fs.put(response.raw, filename=self.name+".jpg", my_id=movie_id, html=movie_url)
+            self.fs.put(response.raw, filename=self.name+".jpg", my_id=movie_id, html=movie_url, path = path + self.name+".jpg")
             return state
 
     # check if the poster exist before attempting delete
@@ -72,12 +72,10 @@ class mongodb:
     def read_data(self, filename):
 
         if (self.search(filename)):
-            image_bin = self.fs.get_last_version(filename + '.jpg').read()
-            with open(f'{filename}.jpg', 'wb') as outfile:
-                image = outfile.write(image_bin)
-            return image
-        else:
-            return "The image not found"
+            file = self.fs.find_one({"filename":filename+".jpg"}).read()
+            with open(filename + ".jpg", 'wb') as w:
+                w.write(file)
+            return file
     # read data from fs.file colum
     def read_all_posters(self):
         posters = []

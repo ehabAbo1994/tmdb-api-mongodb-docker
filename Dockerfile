@@ -18,7 +18,7 @@ RUN pip3 install -r /app/requirements.txt
 COPY . /app
 
 RUN mkdir -p /app/templates
-COPY ./templates/*  /app/templates
+COPY templates/*  /app/templates
 
 EXPOSE 5000
 # Step 4 set default commands
