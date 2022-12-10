@@ -7,13 +7,13 @@
     - API key for imdb.
     - Code editor of your choice.
 - steps to run:
-    - Clone this repostory to your computer. 
+    - Clone this repository to your computer. 
       - after cloning you need to have a TMDB API you can follow the stepts below:
         - Go to https://www.themoviedb.org/ and create new account.
         - Go to settings and click on API.
         - Generate new API.
       - after you have the api save it in a .env file.
-      - images/Capture.PNG
+      - ![](../tmdb-api-mongodb/images/Capture.PNG)
     - In the terminal run the command docker build . -t app:latest
     - Run the command docker-compose -f docker_compose.yaml up
     - open http://localhost:5001/ on your browser.
